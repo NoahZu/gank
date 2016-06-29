@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_latest"
+        android:icon="@mipmap/ic_launcher"
+        android:title="@string/latest_gank" />
+    <item
+        android:id="@+id/action_history"
+        android:icon="@mipmap/ic_launcher"
+        android:title="@string/history_gank" />
+    <item
+        android:id="@+id/action_search"
+        android:icon="@mipmap/ic_launcher"
+        android:title="@string/search_gank" />
+    <item
+        android:id="@+id/action_commit"
+        android:icon="@mipmap/ic_launcher"
+        android:title="@string/commit_gank" />
+
+</menu>

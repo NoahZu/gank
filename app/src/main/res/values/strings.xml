@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">每日Gank</string>
+    <string name="latest_gank">最新Gank</string>
+    <string name="history_gank">历史Gank</string>
+    <string name="search_gank">搜索Gank</string>
+    <string name="commit_gank">提交Gank</string>
+</resources>
