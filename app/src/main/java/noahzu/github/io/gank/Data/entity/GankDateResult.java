@@ -7,6 +7,6 @@ import java.util.List;
  * 发表gank的日期集合
  */
 public class GankDateResult {
-    boolean error;
-    List<String> results;
+    public boolean error;
+    public List<String> results;
 }
