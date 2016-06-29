@@ -58,7 +58,7 @@ public interface GankApi {
      * @param debug
      * @return
      */
-    @POST("https://gank.io/api/add2gank")
+    @POST("add2gank")
     Observable<CommitResult> commitGank(
             @Body String url,
             @Body String desc,

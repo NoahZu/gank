@@ -4,4 +4,7 @@
     <string name="history_gank">历史Gank</string>
     <string name="search_gank">搜索Gank</string>
     <string name="commit_gank">提交Gank</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -5,7 +5,8 @@ package noahzu.github.io.gank.Data;
  */
 public class Constants {
 
-    public static String baseUrl = "http://gank.io/api/";
+    public static String httpBaseUrl = "http://gank.io/api/";
+    public static String httpsBaseUrl = "https://gank.io/api/";
 
     //搜索的关键词
     public static String android_ = "Android";
