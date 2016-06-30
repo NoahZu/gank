@@ -1,1 +1,1 @@
-gank.io客户端
+MVP+retrofit+rxJava实现的干货集中营[http://gank.io/](http://gank.io/)的Android客户端
