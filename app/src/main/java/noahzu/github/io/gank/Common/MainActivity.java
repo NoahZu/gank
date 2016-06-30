@@ -9,11 +9,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import noahzu.github.io.gank.LatestGank.LatestGankFragment;
 import noahzu.github.io.gank.R;
 
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
+
+    private LatestGankFragment f1;
+    private LatestGankFragment f2;
+    private LatestGankFragment f3;
+    private LatestGankFragment f4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +76,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void initLatestGank() {
         mDrawerLayout.closeDrawers();
-        Snackbar.make(getWindow().getDecorView(),"最新干货",Snackbar.LENGTH_LONG).show();
+        if(f1 == null ){
+            f1 = LatestGankFragment.newInstance();
+        }
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.contentFrame,f1)
+                .commit();
     }
 }

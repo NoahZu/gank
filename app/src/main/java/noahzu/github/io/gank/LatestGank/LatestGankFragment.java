@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
@@ -20,14 +21,14 @@ import noahzu.github.io.gank.R;
 /**
  * 最新的gank
  */
-public class LatestGankFragment extends Fragment implements TabLayout.OnTabSelectedListener,LatestGankContract.View{
+public class LatestGankFragment extends Fragment implements TabLayout.OnTabSelectedListener,LatestGankContract.View,AdapterView.OnItemClickListener{
 
     private TabLayout mTablayout;
     private ListView mGankList;
     private LatestGankContract.Presenter mPresenter;
     private ProgressBar mLoadingProgress;
     private LatestGankListAdapter mAdapter;
-
+    private View contentView;
     public LatestGankFragment() {
 
     }
@@ -40,16 +41,20 @@ public class LatestGankFragment extends Fragment implements TabLayout.OnTabSelec
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        initView();
         mAdapter = new LatestGankListAdapter(new ArrayList<Gank>(0),getContext());
-        return inflater.inflate(R.layout.fragment_latest_gank, container, false);
+        contentView = inflater.inflate(R.layout.fragment_latest_gank, container, false);
+        mPresenter = new LatestPresenter(this);
+        initView();
+        return contentView;
     }
 
     private void initView() {
-        mTablayout = (TabLayout) getView().findViewById(R.id.latest_gank_tab);
-        mGankList = (ListView) getView().findViewById(R.id.latest_gank_list);
-        mLoadingProgress = (ProgressBar) getView().findViewById(R.id.loading_pro);
+        mTablayout = (TabLayout) contentView.findViewById(R.id.latest_gank_tab);
+        mGankList = (ListView) contentView.findViewById(R.id.latest_gank_list);
+        mGankList.setAdapter(mAdapter);
+        mLoadingProgress = (ProgressBar) contentView.findViewById(R.id.loading_pro);
         initTab();
+        mGankList.setOnItemClickListener(this);
     }
 
     private void initTab() {
@@ -94,7 +99,7 @@ public class LatestGankFragment extends Fragment implements TabLayout.OnTabSelec
 
     @Override
     public void showMessage(String msg) {
-        Snackbar.make(getView(),msg,Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(contentView,msg,Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
@@ -119,7 +124,17 @@ public class LatestGankFragment extends Fragment implements TabLayout.OnTabSelec
     }
 
     @Override
+    public String getCurrentTab() {
+        return mTablayout.getTabAt(mTablayout.getSelectedTabPosition()).getText().toString();
+    }
+
+    @Override
     public void setPresenter(LatestGankContract.Presenter presenter) {
         this.mPresenter = presenter;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        mPresenter.openGank(position);
     }
 }
