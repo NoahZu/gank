@@ -2,7 +2,6 @@ package noahzu.github.io.gank.Common;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -27,14 +26,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Set up the toolbar.
+        setupToolbarAndDrawer();
+    }
+
+    private void setupToolbarAndDrawer() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
         ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         ab.setDisplayHomeAsUpEnabled(true);
 
-        // Set up the navigation drawer.
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setStatusBarBackground(R.color.colorPrimaryDark);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -71,28 +73,50 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void initCommitGank() {
+        getSupportActionBar().setTitle("提交Gank");
         mDrawerLayout.closeDrawers();
-        Snackbar.make(getWindow().getDecorView(),"提交干货",Snackbar.LENGTH_LONG).show();
+        if(f4 == null ){
+            f4 = LatestGankFragment.newInstance();
+        }
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.contentFrame,f4)
+                .commit();
     }
 
     private void initSearchGank() {
+        getSupportActionBar().setTitle("搜索Gank");
         mDrawerLayout.closeDrawers();
-        Snackbar.make(getWindow().getDecorView(),"检索干货",Snackbar.LENGTH_LONG).show();
+        if(f3 == null ){
+            f3 = LatestGankFragment.newInstance();
+        }
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.contentFrame,f3)
+                .commit();
     }
 
     private void initHistoryGank() {
+        getSupportActionBar().setTitle("历史Gank");
         mDrawerLayout.closeDrawers();
-        Snackbar.make(getWindow().getDecorView(),"历史干货",Snackbar.LENGTH_LONG).show();
+        if(f2 == null ){
+            f2 = LatestGankFragment.newInstance();
+        }
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.contentFrame,f2)
+                .commit();
     }
 
     private void initLatestGank() {
+        getSupportActionBar().setTitle("最新Gank");
         mDrawerLayout.closeDrawers();
         if(f1 == null ){
             f1 = LatestGankFragment.newInstance();
         }
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.contentFrame,f1)
+                .replace(R.id.contentFrame,f1)
                 .commit();
     }
 }
