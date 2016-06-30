@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    >
+        <TextView
+            android:id="@+id/gank_desc_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fragment完全解析三步曲"
+            android:textSize="18sp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:paddingBottom="10dp"/>
+        <TextView
+            android:id="@+id/gank_who"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="by NoahZu"
+            android:layout_below="@id/gank_desc_text"
+            android:layout_alignParentRight="true"/>
+</RelativeLayout>
