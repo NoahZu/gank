@@ -2,33 +2,37 @@ package noahzu.github.io.gank.LatestGank;
 
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import noahzu.github.io.gank.Data.Constants;
 import noahzu.github.io.gank.Data.entity.Gank;
 import noahzu.github.io.gank.R;
+import noahzu.github.io.gank.widget.RecycleViewDivider;
 
 /**
  * 最新的gank
  */
-public class LatestGankFragment extends Fragment implements TabLayout.OnTabSelectedListener,LatestGankContract.View,AdapterView.OnItemClickListener{
+public class LatestGankFragment extends Fragment implements LatestGankContract.View,AdapterView.OnItemClickListener{
 
-    private TabLayout mTablayout;
-    private ListView mGankList;
+    private RecyclerView mGankList;
     private LatestGankContract.Presenter mPresenter;
     private ProgressBar mLoadingProgress;
     private LatestGankListAdapter mAdapter;
     private View contentView;
+    private ImageView mImageView;
+
     public LatestGankFragment() {
 
     }
@@ -49,27 +53,13 @@ public class LatestGankFragment extends Fragment implements TabLayout.OnTabSelec
     }
 
     private void initView() {
-        mTablayout = (TabLayout) contentView.findViewById(R.id.latest_gank_tab);
-        mGankList = (ListView) contentView.findViewById(R.id.latest_gank_list);
-        mGankList.setAdapter(mAdapter);
+        mGankList = (RecyclerView) contentView.findViewById(R.id.gank_list);
         mLoadingProgress = (ProgressBar) contentView.findViewById(R.id.loading_pro);
-        initTab();
-        mGankList.setOnItemClickListener(this);
+        mImageView = (ImageView) contentView.findViewById(R.id.fuli_pic);
+        mGankList.setLayoutManager(new LinearLayoutManager(getContext()));
+        mGankList.addItemDecoration(new RecycleViewDivider(getContext(), LinearLayoutManager.HORIZONTAL));
+        mGankList.setAdapter(mAdapter);
     }
-
-    private void initTab() {
-        mTablayout.addTab(mTablayout.newTab().setText(Constants.android_));
-        mTablayout.addTab(mTablayout.newTab().setText(Constants.ios));
-        mTablayout.addTab(mTablayout.newTab().setText(Constants.video));
-        mTablayout.addTab(mTablayout.newTab().setText(Constants.welfare));
-        mTablayout.addTab(mTablayout.newTab().setText(Constants.extendSource));
-        mTablayout.addTab(mTablayout.newTab().setText(Constants.front));
-        mTablayout.addTab(mTablayout.newTab().setText(Constants.recommand));
-        mTablayout.addTab(mTablayout.newTab().setText(Constants.app));
-
-        mTablayout.setOnTabSelectedListener(this);
-    }
-
     @Override
     public void onResume() {
         super.onResume();
@@ -80,21 +70,6 @@ public class LatestGankFragment extends Fragment implements TabLayout.OnTabSelec
     public void onPause() {
         super.onPause();
         mPresenter.unsubscribe();
-    }
-
-    @Override
-    public void onTabSelected(TabLayout.Tab tab) {
-        mPresenter.onTabSelect(tab.getText().toString());
-    }
-
-    @Override
-    public void onTabUnselected(TabLayout.Tab tab) {
-        mPresenter.onTabSelect(tab.getText().toString());
-    }
-
-    @Override
-    public void onTabReselected(TabLayout.Tab tab) {
-        mPresenter.onTabSelect(tab.getText().toString());
     }
 
     @Override
@@ -124,9 +99,10 @@ public class LatestGankFragment extends Fragment implements TabLayout.OnTabSelec
     }
 
     @Override
-    public String getCurrentTab() {
-        return mTablayout.getTabAt(mTablayout.getSelectedTabPosition()).getText().toString();
+    public void showPicture(Gank gank) {
+        Picasso.with(getContext()).load(gank.url).into(mImageView);
     }
+
 
     @Override
     public void setPresenter(LatestGankContract.Presenter presenter) {

@@ -17,11 +17,10 @@ public class LatestGankContract {
         void hideLoading();
         void showGanks(List<Gank> ganks);
         void showGankDetails(Gank gank);
-        String getCurrentTab();
+        void showPicture(Gank gank);
     }
 
     interface Presenter extends BasePresenter{
-        void onTabSelect(String tabText);
         void openGank(int position);
     }
 }

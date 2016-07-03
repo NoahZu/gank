@@ -5,7 +5,6 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-import noahzu.github.io.gank.Data.Constants;
 import noahzu.github.io.gank.Data.entity.ApiDataManager;
 import noahzu.github.io.gank.Data.entity.DayGankResult;
 import noahzu.github.io.gank.Data.entity.Gank;
@@ -25,11 +24,14 @@ public class LatestPresenter implements LatestGankContract.Presenter {
     private LatestGankContract.View mView;
     private CompositeSubscription mSubscriptions;
     private DayGankResult data;
+    private List<Gank> mGankList;
+    private Gank mFuliGank;
 
     public LatestPresenter(LatestGankContract.View view) {
         this.mView = view;
         mSubscriptions = new CompositeSubscription();
         mView.setPresenter(this);
+        mGankList = new ArrayList<Gank>();
     }
 
     @Override
@@ -48,36 +50,23 @@ public class LatestPresenter implements LatestGankContract.Presenter {
                         return ApiDataManager.getInstance().getGankApi().getDateGankBydate(dateWords[0], dateWords[1], dateWords[2]);
                     }
                 })
-                .map(new Func1<DayGankResult, DayGankResult>() {
+                .map(new Func1<DayGankResult, List<Gank>>() {
 
                     @Override
-                    public DayGankResult call(DayGankResult dayGankResult) {
-                        if(dayGankResult.results.androidList == null ){
-                            dayGankResult.results.androidList = new ArrayList<Gank>(0);
-                        }
-                        if (dayGankResult.results.appList == null){
-                            dayGankResult.results.appList = new ArrayList<Gank>(0);
-                        }
-                        if (dayGankResult.results.extendSourceList == null){
-                            dayGankResult.results.extendSourceList = new ArrayList<Gank>(0);
-                        }
-                        if (dayGankResult.results.iOSList == null){
-                            dayGankResult.results.iOSList = new ArrayList<Gank>(0);
-                        }
-                        if (dayGankResult.results.meizhiList == null){
-                            dayGankResult.results.meizhiList = new ArrayList<Gank>(0);
-                        }
-                        if (dayGankResult.results.recommandList == null){
-                            dayGankResult.results.recommandList = new ArrayList<Gank>(0);
-                        }
-                        if (dayGankResult.results.videoList == null){
-                            dayGankResult.results.videoList = new ArrayList<Gank>(0);
-                        }
-                        return dayGankResult;
+                    public List<Gank> call(DayGankResult dayGankResult) {
+                            mGankList.clear();
+                            mGankList.addAll(dayGankResult.results.androidList == null ? new ArrayList<Gank>(0) : dayGankResult.results.androidList);
+                            mGankList.addAll(dayGankResult.results.appList == null ? new ArrayList<Gank>(0) : dayGankResult.results.appList);
+                            mGankList.addAll(dayGankResult.results.extendSourceList == null ? new ArrayList<Gank>(0) : dayGankResult.results.extendSourceList);
+                            mGankList.addAll(dayGankResult.results.iOSList == null ? new ArrayList<Gank>(0) : dayGankResult.results.iOSList);
+                            mFuliGank = dayGankResult.results.meizhiList.get(0);
+                            mGankList.addAll(dayGankResult.results.recommandList == null ? new ArrayList<Gank>(0) : dayGankResult.results.recommandList );
+                            mGankList.addAll(dayGankResult.results.videoList == null ? new ArrayList<Gank>(0) : dayGankResult.results.videoList);
+                        return mGankList;
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<DayGankResult>() {
+                .subscribe(new Subscriber<List<Gank>>() {
                     @Override
                     public void onStart() {
                         super.onStart();
@@ -97,17 +86,16 @@ public class LatestPresenter implements LatestGankContract.Presenter {
                     }
 
                     @Override
-                    public void onNext(DayGankResult dayGankResult) {
-                        data = dayGankResult;
-                        setGankData();
+                    public void onNext(List<Gank> ganks) {
+                        setGankData(ganks);
                     }
                 });
         mSubscriptions.add(subscription);
     }
 
-    private void setGankData() {
-        String selectedTab = mView.getCurrentTab();
-        mView.showGanks(getGanksByTab(selectedTab));
+    private void setGankData(List<Gank> ganks) {
+        mView.showGanks(ganks);
+        mView.showPicture(mFuliGank);
     }
 
     @Override
@@ -115,39 +103,9 @@ public class LatestPresenter implements LatestGankContract.Presenter {
         mSubscriptions.clear();
     }
 
-    @Override
-    public void onTabSelect(String tabText) {
-        if(data != null){
-            setGankData();
-        }else {
-            loadGanks();
-        }
-    }
 
     @Override
     public void openGank(int position) {
-        mView.showGankDetails(getGanksByTab(mView.getCurrentTab()).get(position));
-    }
-
-
-    public List<Gank> getGanksByTab(String selectedTab){
-        if (selectedTab.equals(Constants.android_)) {
-            return data.results.androidList;
-        } else if (selectedTab.equals(Constants.ios)) {
-            return data.results.iOSList;
-        } else if (selectedTab.equals(Constants.video)) {
-            return data.results.videoList;
-        } else if (selectedTab.equals(Constants.welfare)) {
-            return data.results.meizhiList;
-        } else if (selectedTab.equals(Constants.extendSource)) {
-            return data.results.extendSourceList;
-        } else if (selectedTab.equals(Constants.front)) {
-            return data.results.androidList;
-        } else if (selectedTab.equals(Constants.recommand)) {
-            return data.results.recommandList;
-        } else if (selectedTab.equals(Constants.app)) {
-            return data.results.appList;
-        }
-        return null;
+        mView.showGankDetails(mGankList.get(position));
     }
 }

@@ -3,12 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
     >
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="休息视频"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:background="@android:color/darker_gray"
+            android:visibility="visible"
+            />
         <TextView
             android:id="@+id/gank_desc_text"
             android:layout_width="wrap_content"
@@ -17,12 +22,15 @@
             android:textSize="18sp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
-            android:paddingBottom="10dp"/>
+            android:paddingBottom="10dp"
+            android:layout_below="@id/title"
+            android:layout_marginTop="20dp"/>
         <TextView
             android:id="@+id/gank_who"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="by NoahZu"
             android:layout_below="@id/gank_desc_text"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="10dp"/>
 </RelativeLayout>
