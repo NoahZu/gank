@@ -6,29 +6,58 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
         <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 app:layout_scrollFlags="scroll|enterAlways">
 
                 <ImageView
                     android:id="@+id/fuli_pic"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/pic"
-                    android:layout_marginTop="?attr/actionBarSize"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingTop="20dp"
+                    android:paddingLeft="20dp">
+                    <TextView
+                        android:id="@+id/pic_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="福原爱"
+                        android:textSize="17sp"
+                        android:textColor="@android:color/white"
+                        />
+                    <TextView
+                        android:id="@+id/pic_who"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="代码家"
+                        android:layout_marginTop="7dp"
+                        android:textSize="15sp"
+                        android:textColor="@android:color/white"/>
+                </LinearLayout>
             </LinearLayout>
         </android.support.design.widget.AppBarLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            >
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/gank_list"
                     android:layout_width="match_parent"

@@ -11,8 +11,12 @@
             android:text="休息视频"
             android:textSize="25sp"
             android:textStyle="bold"
-            android:background="@android:color/darker_gray"
+            android:background="@color/colorAccent"
             android:visibility="visible"
+            android:gravity="center_horizontal"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:textColor="@android:color/white"
             />
         <TextView
             android:id="@+id/gank_desc_text"
@@ -32,5 +36,6 @@
             android:text="by NoahZu"
             android:layout_below="@id/gank_desc_text"
             android:layout_alignParentRight="true"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"/>
 </RelativeLayout>

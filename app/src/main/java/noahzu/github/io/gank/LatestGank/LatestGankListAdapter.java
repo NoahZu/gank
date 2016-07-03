@@ -5,10 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -21,12 +18,10 @@ import noahzu.github.io.gank.R;
 public class LatestGankListAdapter extends RecyclerView.Adapter<LatestGankListAdapter.MyViewHolder> {
     private List<Gank> mGanks;
     private Context mContext;
-    private String currentType;
 
     public LatestGankListAdapter(List<Gank> ganks,Context mContext){
         this.mGanks = ganks;
         this.mContext = mContext;
-        currentType = "start";
     }
 
     @Override
@@ -37,9 +32,8 @@ public class LatestGankListAdapter extends RecyclerView.Adapter<LatestGankListAd
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Gank g = mGanks.get(position);
-        if(!currentType.equals(g.type)){
-            currentType = g.type;
-            holder.setTitle(currentType);
+        if(position == 0 || !mGanks.get(position - 1).type.equals(mGanks.get(position).type)){
+            holder.setTitle((mGanks.get(position).type));
         }else{
             holder.hideTitle();
         }
