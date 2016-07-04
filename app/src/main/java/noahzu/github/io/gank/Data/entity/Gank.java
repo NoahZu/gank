@@ -1,9 +1,11 @@
 package noahzu.github.io.gank.Data.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2016/6/29 0029.
  */
-public class Gank {
+public class Gank implements Serializable{
    public String _id;// "572de80967765974fbfcfa26",
    public String createdAt;// "2016-05-07T21:05:13.133Z",
    public String desc; //"Fragment完全解析三步曲",

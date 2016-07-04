@@ -18,6 +18,7 @@ import noahzu.github.io.gank.R;
 public class LatestGankListAdapter extends RecyclerView.Adapter<LatestGankListAdapter.MyViewHolder> {
     private List<Gank> mGanks;
     private Context mContext;
+    private OnItemClickListener listener;
 
     public LatestGankListAdapter(List<Gank> ganks,Context mContext){
         this.mGanks = ganks;
@@ -30,7 +31,7 @@ public class LatestGankListAdapter extends RecyclerView.Adapter<LatestGankListAd
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
         Gank g = mGanks.get(position);
         if(position == 0 || !mGanks.get(position - 1).type.equals(mGanks.get(position).type)){
             holder.setTitle((mGanks.get(position).type));
@@ -38,6 +39,14 @@ public class LatestGankListAdapter extends RecyclerView.Adapter<LatestGankListAd
             holder.hideTitle();
         }
         holder.setGank(mGanks.get(position));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null){
+                    listener.onItemClick(v,position);
+                }
+            }
+        });
     }
 
     @Override
@@ -56,11 +65,12 @@ public class LatestGankListAdapter extends RecyclerView.Adapter<LatestGankListAd
         TextView titleView;
         TextView descView;
         TextView whoView;
+        public View itemView;
 
 
         public MyViewHolder(View itemView) {
             super(itemView);
-
+            this.itemView = itemView;
             titleView = (TextView) itemView.findViewById(R.id.title);
             descView = (TextView) itemView.findViewById(R.id.gank_desc_text);
             whoView = (TextView) itemView.findViewById(R.id.gank_who);
@@ -86,5 +96,12 @@ public class LatestGankListAdapter extends RecyclerView.Adapter<LatestGankListAd
         }
     }
 
+    public interface OnItemClickListener{
+        void onItemClick(View v,int position);
+    }
+
+    public void setOnItemClickLsitener(OnItemClickListener listener){
+        this.listener = listener;
+    }
 
 }

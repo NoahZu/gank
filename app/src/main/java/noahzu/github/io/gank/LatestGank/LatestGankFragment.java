@@ -27,7 +27,7 @@ import noahzu.github.io.gank.widget.RecycleViewDivider;
 /**
  * 最新的gank
  */
-public class LatestGankFragment extends Fragment implements LatestGankContract.View,AdapterView.OnItemClickListener{
+public class LatestGankFragment extends Fragment implements LatestGankContract.View,LatestGankListAdapter.OnItemClickListener{
 
     private RecyclerView mGankList;
     private LatestGankContract.Presenter mPresenter;
@@ -67,6 +67,7 @@ public class LatestGankFragment extends Fragment implements LatestGankContract.V
         mGankList.setLayoutManager(new LinearLayoutManager(getContext()));
         mGankList.addItemDecoration(new RecycleViewDivider(getContext(), LinearLayoutManager.HORIZONTAL));
         mGankList.setAdapter(mAdapter);
+        mAdapter.setOnItemClickLsitener(this);
     }
     @Override
     public void onResume() {
@@ -103,7 +104,7 @@ public class LatestGankFragment extends Fragment implements LatestGankContract.V
 
     @Override
     public void showGankDetails(Gank gank) {
-        // TODO: 2016/6/29 0029 页面跳转
+        GankDetailActivity.actionStart(getContext(),gank);
     }
 
     @Override
@@ -120,7 +121,7 @@ public class LatestGankFragment extends Fragment implements LatestGankContract.V
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    public void onItemClick(View v, int position) {
         mPresenter.openGank(position);
     }
 }
