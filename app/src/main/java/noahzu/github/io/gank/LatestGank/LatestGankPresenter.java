@@ -20,14 +20,14 @@ import rx.subscriptions.CompositeSubscription;
 /**
  * Created by Administrator on 2016/6/29 0029.
  */
-public class LatestPresenter implements LatestGankContract.Presenter {
+public class LatestGankPresenter implements LatestGankContract.Presenter {
     private LatestGankContract.View mView;
     private CompositeSubscription mSubscriptions;
     private DayGankResult data;
     private List<Gank> mGankList;
     private Gank mFuliGank;
 
-    public LatestPresenter(LatestGankContract.View view) {
+    public LatestGankPresenter(LatestGankContract.View view) {
         this.mView = view;
         mSubscriptions = new CompositeSubscription();
         mView.setPresenter(this);

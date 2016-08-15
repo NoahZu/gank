@@ -17,7 +17,7 @@ import java.util.List;
 
 import noahzu.github.io.gank.Base.BaseFragment;
 import noahzu.github.io.gank.Data.entity.Gank;
-import noahzu.github.io.gank.Data.entity.PreviewGank;
+import noahzu.github.io.gank.Data.entity.HistoryGankResult;
 import noahzu.github.io.gank.R;
 import noahzu.github.io.gank.widget.RecycleViewDivider;
 
@@ -29,6 +29,8 @@ public class HistoryGankFragment extends BaseFragment implements HistoryGankCont
     private RecyclerView gankListRecylerView;
     private ProgressBar loadingProgressBar;
     private HistoryGankListAdapter adapter;
+    private HistoryGankContract.Presenter presenter;
+    private int page = 1;
 
     public HistoryGankFragment() {
 
@@ -47,18 +49,18 @@ public class HistoryGankFragment extends BaseFragment implements HistoryGankCont
 
     @Override
     protected void initData() {
-        adapter = new HistoryGankListAdapter(getContext(),new ArrayList<PreviewGank>(0));
+        adapter = new HistoryGankListAdapter(getContext(),new ArrayList<HistoryGankResult.PreviewGank>(0));
         gankListRecylerView.setAdapter(adapter);
     }
 
     @Override
     protected void initView() {
+        new HistoryGankPresenter(this);
         gankListRecylerView = (RecyclerView) getContentView().findViewById(R.id.history_gank_list);
         loadingProgressBar = (ProgressBar) getContentView().findViewById(R.id.loading_progress);
 
-        GridLayoutManager layoutManager = new GridLayoutManager(getContext(),3);
-        gankListRecylerView.setLayoutManager(layoutManager);
-        gankListRecylerView.addItemDecoration(new RecycleViewDivider(getContext(), layoutManager.HORIZONTAL));
+        gankListRecylerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        gankListRecylerView.addItemDecoration(new RecycleViewDivider(getContext(), LinearLayoutManager.HORIZONTAL));
     }
 
     @Override
@@ -82,22 +84,39 @@ public class HistoryGankFragment extends BaseFragment implements HistoryGankCont
     }
 
     @Override
-    public void showGanks(List<Gank> ganks) {
-
+    public void showGanks(List<HistoryGankResult.PreviewGank> ganks) {
+        adapter.refreshData(ganks);
     }
 
     @Override
-    public void showGankDetails(Gank gank) {
-
+    public void showGankDetails(HistoryGankResult.PreviewGank gank) {
+        // TODO: 2016/8/15 jump to the detail activity
     }
 
     @Override
-    public void showPicture(Gank gank) {
+    public void showPicture(HistoryGankResult.PreviewGank gank) {
+        // TODO: 2016/8/15 show a picture dialog
+    }
 
+    @Override
+    public int getCurrentPage() {
+        return page;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        presenter.subscribe();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        presenter.unsubscribe();
     }
 
     @Override
     public void setPresenter(HistoryGankContract.Presenter presenter) {
-
+        this.presenter = presenter;
     }
 }

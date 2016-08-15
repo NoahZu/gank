@@ -3,7 +3,15 @@ package noahzu.github.io.gank.HistoryGank;
 import java.util.ArrayList;
 import java.util.List;
 
-import noahzu.github.io.gank.Data.entity.PreviewGank;
+import noahzu.github.io.gank.Data.entity.ApiDataManager;
+import noahzu.github.io.gank.Data.entity.BeanWrapper;
+import noahzu.github.io.gank.Data.entity.HistoryGankResult;
+import rx.Observable;
+import rx.Subscriber;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
 /**
@@ -12,7 +20,7 @@ import rx.subscriptions.CompositeSubscription;
 public class HistoryGankPresenter implements HistoryGankContract.Presenter {
 
     private HistoryGankContract.View mView;
-    private List<PreviewGank> gankList;
+    private List<HistoryGankResult.PreviewGank> gankList;
     private CompositeSubscription compositeSubscription;
 
 
@@ -30,11 +38,40 @@ public class HistoryGankPresenter implements HistoryGankContract.Presenter {
     }
 
     private void loadGanks() {
+        Subscription subscription = ApiDataManager.getInstance()
+                      .getGankApi()
+                      .getHistoryGank(mView.getCurrentPage())
+                      .subscribeOn(Schedulers.io())
+                      .observeOn(AndroidSchedulers.mainThread())
+                      .subscribe(new Subscriber<HistoryGankResult>() {
 
+                          @Override
+                          public void onStart() {
+                              super.onStart();
+                              mView.showLoading();
+                          }
+
+                          @Override
+                          public void onCompleted() {
+                            mView.hideLoading();
+                          }
+
+                          @Override
+                          public void onError(Throwable e) {
+                            mView.showMessage("网络错误");
+                          }
+
+                          @Override
+                          public void onNext(HistoryGankResult listBeanWrapper) {
+                                mView.showGanks(listBeanWrapper.getResults());
+                          }
+                      });
+
+        compositeSubscription.add(subscription);
     }
 
     @Override
     public void unsubscribe() {
-
+        compositeSubscription.unsubscribe();
     }
 }

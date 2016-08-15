@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import noahzu.github.io.gank.HistoryGank.HistoryGankFragment;
 import noahzu.github.io.gank.LatestGank.LatestGankFragment;
 import noahzu.github.io.gank.R;
 
@@ -16,8 +17,8 @@ public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
 
-    private LatestGankFragment f1;
-    private LatestGankFragment f2;
+    private LatestGankFragment latestGankFragment;
+    private HistoryGankFragment historyGankFragment;
     private LatestGankFragment f3;
     private LatestGankFragment f4;
 
@@ -99,24 +100,24 @@ public class MainActivity extends AppCompatActivity {
     private void initHistoryGank() {
         getSupportActionBar().setTitle("历史Gank");
         mDrawerLayout.closeDrawers();
-        if(f2 == null ){
-            f2 = LatestGankFragment.newInstance();
+        if(historyGankFragment == null ){
+            historyGankFragment = HistoryGankFragment.newInstance();
         }
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.contentFrame,f2)
+                .replace(R.id.contentFrame, historyGankFragment)
                 .commit();
     }
 
     private void initLatestGank() {
         getSupportActionBar().setTitle("最新Gank");
         mDrawerLayout.closeDrawers();
-        if(f1 == null ){
-            f1 = LatestGankFragment.newInstance();
+        if(latestGankFragment == null ){
+            latestGankFragment = LatestGankFragment.newInstance();
         }
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.contentFrame,f1)
+                .replace(R.id.contentFrame, latestGankFragment)
                 .commit();
     }
 }

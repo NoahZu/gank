@@ -8,14 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +50,7 @@ public class LatestGankFragment extends Fragment implements LatestGankContract.V
                              Bundle savedInstanceState) {
         mAdapter = new LatestGankListAdapter(new ArrayList<Gank>(0),getContext());
         contentView = inflater.inflate(R.layout.fragment_latest_gank, container, false);
-        mPresenter = new LatestPresenter(this);
+        mPresenter = new LatestGankPresenter(this);
         initView();
         return contentView;
     }

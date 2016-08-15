@@ -3,7 +3,7 @@ package noahzu.github.io.gank.Data;
 import noahzu.github.io.gank.Data.entity.CommitResult;
 import noahzu.github.io.gank.Data.entity.DayGankResult;
 import noahzu.github.io.gank.Data.entity.GankDateResult;
-import noahzu.github.io.gank.Data.entity.PreviewGank;
+import noahzu.github.io.gank.Data.entity.HistoryGankResult;
 import noahzu.github.io.gank.Data.entity.SearchGankResult;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -68,6 +68,6 @@ public interface GankApi {
             @Body boolean debug);
 
     @GET("history/content/10/{page}")
-    Observable<PreviewGank> getHistoryGank(@Path("page") int page);
+    Observable<HistoryGankResult> getHistoryGank(@Path("page") int page);
 
 }

@@ -12,7 +12,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import noahzu.github.io.gank.Data.entity.PreviewGank;
+import noahzu.github.io.gank.Data.entity.HistoryGankResult;
 import noahzu.github.io.gank.R;
 
 /**
@@ -20,10 +20,10 @@ import noahzu.github.io.gank.R;
  */
 public class HistoryGankListAdapter extends RecyclerView.Adapter<HistoryGankListAdapter.ViewHolder> {
 
-    private List<PreviewGank> ganks;
+    private List<HistoryGankResult.PreviewGank> ganks;
     private Context context;
 
-    public HistoryGankListAdapter(Context context,List<PreviewGank> ganks){
+    public HistoryGankListAdapter(Context context,List<HistoryGankResult.PreviewGank> ganks){
         this.ganks = ganks;
         this.context = context;
     }
@@ -48,7 +48,7 @@ public class HistoryGankListAdapter extends RecyclerView.Adapter<HistoryGankList
 
     @Override
     public int getItemCount() {
-        return 0;
+        return ganks.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
@@ -61,7 +61,7 @@ public class HistoryGankListAdapter extends RecyclerView.Adapter<HistoryGankList
             textView = (TextView) itemView.findViewById(R.id.gank_his_text);
         }
 
-        public void setData(PreviewGank gank,Context context){
+        public void setData(HistoryGankResult.PreviewGank gank, Context context){
             Picasso.with(context).load(gank.getImageUrl()).into(imageView);
             textView.setText(gank.title);
         }
@@ -77,7 +77,7 @@ public class HistoryGankListAdapter extends RecyclerView.Adapter<HistoryGankList
         void onItemClick(View view,int position);
     }
 
-    public void refreshData(List<PreviewGank> ganks){
+    public void refreshData(List<HistoryGankResult.PreviewGank> ganks){
         this.ganks = ganks;
         notifyDataSetChanged();
     }
