@@ -37,7 +37,8 @@ public class HistoryGankPresenter implements HistoryGankContract.Presenter {
         loadGanks();
     }
 
-    private void loadGanks() {
+    @Override
+    public void loadGanks() {
         Subscription subscription = ApiDataManager.getInstance()
                       .getGankApi()
                       .getHistoryGank(mView.getCurrentPage())

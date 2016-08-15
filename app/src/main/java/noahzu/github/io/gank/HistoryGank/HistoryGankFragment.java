@@ -8,6 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +28,7 @@ public class HistoryGankFragment extends BaseFragment implements HistoryGankCont
     private HistoryGankListAdapter adapter;
     private HistoryGankContract.Presenter presenter;
     private int page = 1;
+    private static final int PAGE_SIZE = 10;
 
     public HistoryGankFragment() {
 
@@ -45,6 +48,15 @@ public class HistoryGankFragment extends BaseFragment implements HistoryGankCont
     @Override
     protected void initData() {
         adapter = new HistoryGankListAdapter(getContext(),R.layout.his_gank_item,new ArrayList<HistoryGankResult.PreviewGank>(0));
+        adapter.openLoadAnimation();
+        adapter.openLoadMore(PAGE_SIZE,true);
+        adapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+            @Override
+            public void onLoadMoreRequested() {
+                page++;
+                presenter.loadGanks();
+            }
+        });
         gankListRecylerView.setAdapter(adapter);
     }
 
@@ -81,6 +93,11 @@ public class HistoryGankFragment extends BaseFragment implements HistoryGankCont
     @Override
     public void showGanks(List<HistoryGankResult.PreviewGank> ganks) {
         adapter.setNewData(ganks);
+    }
+
+    @Override
+    public void addGanks(List<HistoryGankResult.PreviewGank> ganks) {
+        adapter.addData(ganks);
     }
 
     @Override

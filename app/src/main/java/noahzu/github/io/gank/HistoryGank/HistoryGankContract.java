@@ -16,12 +16,13 @@ public class HistoryGankContract {
         void showLoading();
         void hideLoading();
         void showGanks(List<HistoryGankResult.PreviewGank> ganks);
+        void addGanks(List<HistoryGankResult.PreviewGank> ganks);
         void showGankDetails(HistoryGankResult.PreviewGank gank);
         void showPicture(HistoryGankResult.PreviewGank gank);
         int getCurrentPage();
     }
 
     interface Presenter extends BasePresenter{
-
+        void loadGanks();
     }
 }
