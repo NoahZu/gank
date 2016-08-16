@@ -32,8 +32,6 @@ public class LatestGankFragment extends Fragment implements LatestGankContract.V
     private LatestGankListAdapter mAdapter;
     private View contentView;
     private ImageView mImageView;
-    private TextView picDescText;
-    private TextView picWhoText;
 
 
     public LatestGankFragment() {
@@ -56,8 +54,7 @@ public class LatestGankFragment extends Fragment implements LatestGankContract.V
     }
 
     private void initView() {
-        picDescText = (TextView) contentView.findViewById(R.id.pic_desc);
-        picWhoText = (TextView) contentView.findViewById(R.id.pic_who);
+
         mGankList = (RecyclerView) contentView.findViewById(R.id.gank_list);
         mLoadingProgress = (ProgressBar) contentView.findViewById(R.id.loading_pro);
         mImageView = (ImageView) contentView.findViewById(R.id.fuli_pic);
@@ -107,8 +104,7 @@ public class LatestGankFragment extends Fragment implements LatestGankContract.V
     @Override
     public void showPicture(Gank gank) {
         Picasso.with(getContext()).load(gank.url).into(mImageView);
-        picWhoText.setText(gank.who);
-        picDescText.setText(gank.desc);
+
     }
 
 

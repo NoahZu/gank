@@ -4,13 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import noahzu.github.io.gank.Data.entity.ApiDataManager;
-import noahzu.github.io.gank.Data.entity.BeanWrapper;
 import noahzu.github.io.gank.Data.entity.HistoryGankResult;
-import rx.Observable;
 import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
