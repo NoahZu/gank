@@ -10,12 +10,12 @@ public class SearchGankResult {
     boolean error;
     List<SearchGank> results;
     public static class SearchGank {
-        String desc;
-        String ganhuo_id;
-        String publishedAt;
-        String readability;
-        String url;
-        String who;
-        String type;
+        public String desc;
+        public String ganhuo_id;
+        public String publishedAt;
+        public String readability;
+        public String url;
+        public String who;
+        public String type;
     }
 }

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+        <TextView
+            android:id="@+id/gank_desc_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fragment完全解析三步曲Fragment完全解析三步曲"
+            android:textSize="17sp"
+            android:layout_marginLeft="20dp"
+            android:paddingBottom="10dp"
+            android:layout_marginTop="13dp"
+            android:lines="1"
+            android:maxEms="13"
+            android:ellipsize="end"/>
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="android"
+            android:layout_marginRight="5dp"
+            android:textColor="@android:color/white"
+            android:background="@drawable/label_back"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginBottom="5dp"
+            android:layout_alignParentRight="true"/>
+</RelativeLayout>
