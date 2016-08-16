@@ -2,19 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/action_latest"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/latest"
         android:title="@string/latest_gank" />
     <item
         android:id="@+id/action_history"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/history"
         android:title="@string/history_gank" />
     <item
         android:id="@+id/action_search"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/search"
         android:title="@string/search_gank" />
     <item
         android:id="@+id/action_commit"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/commit"
         android:title="@string/commit_gank" />
 
 </menu>

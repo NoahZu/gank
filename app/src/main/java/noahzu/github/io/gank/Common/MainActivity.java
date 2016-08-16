@@ -21,17 +21,25 @@ public class MainActivity extends AppCompatActivity {
     private HistoryGankFragment historyGankFragment;
     private LatestGankFragment f3;
     private LatestGankFragment f4;
+    private NavigationView navigationView;
+    private MenuItem preItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupToolbarAndDrawer();
+        initIndexFragment();
+    }
+
+    private void initIndexFragment() {
+        navigationView.getMenu().findItem(R.id.action_latest).setChecked(true);
+        preItem = navigationView.getMenu().findItem(R.id.action_latest);
         initLatestGank();
     }
 
     private void setupToolbarAndDrawer() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
         ab.setHomeAsUpIndicator(R.drawable.ic_menu);
@@ -39,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setStatusBarBackground(R.color.colorPrimaryDark);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
@@ -57,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
                         initCommitGank();
                         break;
                 }
+                preItem.setChecked(false);
+                item.setChecked(true);
+                preItem = item;
                 return true;
             }
         });
