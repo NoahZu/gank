@@ -29,9 +29,9 @@ public class HistoryGankListAdapter extends BaseQuickAdapter<HistoryGankResult.P
 
     @Override
     protected void convert(BaseViewHolder holder, HistoryGankResult.PreviewGank previewGank) {
-        ImageView imageView = holder.getView(R.id.gank_his_img);
+        ImageView imageView = holder.getView(R.id.his_gank_img);
         Picasso.with(mContext).load(previewGank.getImageUrl()).into(imageView);
-        holder.setText(R.id.gank_his_text,previewGank.title);
+        holder.setText(R.id.his_gank_txt,previewGank.title);
     }
 
 }

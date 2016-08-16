@@ -1,26 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/item_cardview"
+    android:layout_gravity="center"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="20dp"
+    android:layout_height="300dp"
+    card_view:cardCornerRadius="5dp"
+    card_view:cardElevation="3dp"
+    card_view:cardMaxElevation="5dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
     >
 
-    <ImageView
-        android:id="@+id/gank_his_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/pic"
-        android:scaleType="fitCenter"
-        android:layout_gravity="center_horizontal"/>
-    <TextView
-        android:id="@+id/gank_his_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="hehehehehehehehehehhehehehehehehehehehhe"
-        android:textSize="20sp"
-        android:layout_marginTop="9dp"
-        android:layout_gravity="center"
-        />
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/his_gank_img"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:scaleType="centerCrop"
+            android:src="#4444"/>
+        <TextView
+            android:id="@+id/his_gank_txt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:lines="1"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:ellipsize="end"
+            />
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

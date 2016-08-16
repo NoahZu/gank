@@ -56,7 +56,8 @@ public class HistoryGankPresenter implements HistoryGankContract.Presenter {
 
                           @Override
                           public void onError(Throwable e) {
-                            mView.showMessage("网络错误");
+                              mView.hideLoading();
+                              mView.showMessage("网络错误");
                           }
 
                           @Override
