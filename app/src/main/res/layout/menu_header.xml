@@ -10,6 +10,6 @@
         android:text="Gank.io"
         android:textSize="20sp"
         android:gravity="center"
-        android:background="#4400ff00"/>
+        android:background="@color/colorPrimary"/>
 
 </LinearLayout>

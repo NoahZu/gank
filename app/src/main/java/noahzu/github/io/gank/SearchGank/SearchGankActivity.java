@@ -11,5 +11,12 @@ public class SearchGankActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_gank);
+
+
+        SearchGankFragment searchGankFragment = new SearchGankFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.search_fragment_container,searchGankFragment)
+                .commit();
     }
 }

@@ -1,5 +1,6 @@
 package noahzu.github.io.gank.Common;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import noahzu.github.io.gank.HistoryGank.HistoryGankFragment;
 import noahzu.github.io.gank.LatestGank.LatestGankFragment;
 import noahzu.github.io.gank.R;
+import noahzu.github.io.gank.SearchGank.SearchGankActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,9 +67,11 @@ public class MainActivity extends AppCompatActivity {
                         initCommitGank();
                         break;
                 }
-                preItem.setChecked(false);
-                item.setChecked(true);
-                preItem = item;
+                if (item.getItemId() != R.id.action_search){
+                    preItem.setChecked(false);
+                    item.setChecked(true);
+                    preItem = item;
+                }
                 return true;
             }
         });
@@ -97,15 +101,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initSearchGank() {
-        getSupportActionBar().setTitle("搜索Gank");
-        mDrawerLayout.closeDrawers();
-        if(f3 == null ){
-            f3 = LatestGankFragment.newInstance();
-        }
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.contentFrame,f3)
-                .commit();
+        startActivity(new Intent(MainActivity.this, SearchGankActivity.class));
     }
 
     private void initHistoryGank() {

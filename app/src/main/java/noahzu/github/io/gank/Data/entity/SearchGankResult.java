@@ -18,4 +18,16 @@ public class SearchGankResult {
         public String who;
         public String type;
     }
+
+    public boolean isError() {
+        return error;
+    }
+
+    public List<SearchGank> getResults() {
+        return results;
+    }
+
+    public int getCount() {
+        return count;
+    }
 }

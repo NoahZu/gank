@@ -46,25 +46,58 @@ public class HistoryGankPresenter implements HistoryGankContract.Presenter {
                           @Override
                           public void onStart() {
                               super.onStart();
-                              mView.showLoading();
                           }
 
                           @Override
                           public void onCompleted() {
-                            mView.hideLoading();
+
                           }
 
                           @Override
                           public void onError(Throwable e) {
-                              mView.hideLoading();
                               mView.showMessage("网络错误");
                           }
 
                           @Override
                           public void onNext(HistoryGankResult listBeanWrapper) {
-                                mView.showGanks(listBeanWrapper.getResults());
+                                mView.addGanks(listBeanWrapper.getResults());
                           }
                       });
+
+        compositeSubscription.add(subscription);
+    }
+
+    @Override
+    public void loadMoreGanks() {
+        Subscription subscription = ApiDataManager.getInstance()
+                .getGankApi()
+                .getHistoryGank(mView.getCurrentPage())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<HistoryGankResult>() {
+
+                    @Override
+                    public void onStart() {
+                        super.onStart();
+                        mView.showLoading();
+                    }
+
+                    @Override
+                    public void onCompleted() {
+                        mView.hideLoading();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        mView.hideLoading();
+                        mView.showMessage("网络错误");
+                    }
+
+                    @Override
+                    public void onNext(HistoryGankResult listBeanWrapper) {
+                        mView.loadMoreGanks(listBeanWrapper.getResults());
+                    }
+                });
 
         compositeSubscription.add(subscription);
     }

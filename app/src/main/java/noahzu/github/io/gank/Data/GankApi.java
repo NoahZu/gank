@@ -67,7 +67,7 @@ public interface GankApi {
             @Body String type,
             @Body boolean debug);
 
-    @GET("history/content/10/{page}")
+    @GET("history/content/6/{page}")
     Observable<HistoryGankResult> getHistoryGank(@Path("page") int page);
 
 }

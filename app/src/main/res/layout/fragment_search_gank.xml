@@ -2,7 +2,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="noahzu.github.io.gank.SearchGank.SearchGankFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="noahzu.github.io.gank.SearchGank.SearchGankFragment">、
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/Toolbar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+
     <LinearLayout
         android:id="@+id/search_container"
         android:layout_width="match_parent"

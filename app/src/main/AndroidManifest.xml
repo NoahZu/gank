@@ -18,7 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".LatestGank.GankDetailActivity" />
-        <activity android:name=".SearchGank.SearchGankActivity"></activity>
+        <activity android:name=".SearchGank.SearchGankActivity" />
+        <activity android:name=".Common.PhotoActivity"></activity>
     </application>
 
 </manifest>

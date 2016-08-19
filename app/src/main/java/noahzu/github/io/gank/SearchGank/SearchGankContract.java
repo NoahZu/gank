@@ -15,10 +15,12 @@ public class SearchGankContract {
         void showLoading();
         void hideLoading();
         void showGanks(List<SearchGank> ganks);
+        void addGanks(List<SearchGank> ganks);
         void showGankDetails(SearchGank gank);
     }
 
     interface Presenter extends BasePresenter{
         void openGank(SearchGank gank);
+        void updateGankList(String keyWord);
     }
 }
