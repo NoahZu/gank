@@ -11,9 +11,6 @@ import static noahzu.github.io.gank.Data.entity.SearchGankResult.SearchGank;
  */
 public class SearchGankContract {
     interface View extends BaseView<Presenter>{
-        void showMessage(String msg);
-        void showLoading();
-        void hideLoading();
         void showGanks(List<SearchGank> ganks);
         void addGanks(List<SearchGank> ganks);
         void showGankDetails(SearchGank gank);

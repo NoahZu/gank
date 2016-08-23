@@ -12,9 +12,6 @@ import noahzu.github.io.gank.Data.entity.HistoryGankResult;
  */
 public class HistoryGankContract {
     interface View extends BaseView<Presenter>{
-        void showMessage(String msg);
-        void showLoading();
-        void hideLoading();
         void showGanks(List<HistoryGankResult.PreviewGank> ganks);
         void addGanks(List<HistoryGankResult.PreviewGank> ganks);
         void showGankDetails(HistoryGankResult.PreviewGank gank);

@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import noahzu.github.io.gank.CommitGank.CommitGankFragment;
 import noahzu.github.io.gank.HistoryGank.HistoryGankFragment;
 import noahzu.github.io.gank.LatestGank.LatestGankFragment;
 import noahzu.github.io.gank.R;
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private LatestGankFragment latestGankFragment;
     private HistoryGankFragment historyGankFragment;
     private LatestGankFragment f3;
-    private LatestGankFragment f4;
+    private CommitGankFragment f4;
     private NavigationView navigationView;
     private MenuItem preItem;
 
@@ -92,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("提交Gank");
         mDrawerLayout.closeDrawers();
         if(f4 == null ){
-            f4 = LatestGankFragment.newInstance();
+            f4 = CommitGankFragment.newInstance();
         }
         getSupportFragmentManager()
                 .beginTransaction()

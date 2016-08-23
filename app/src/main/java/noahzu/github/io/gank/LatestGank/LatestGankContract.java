@@ -12,9 +12,6 @@ import noahzu.github.io.gank.Data.entity.Gank;
 public class LatestGankContract {
 
     interface View extends BaseView<Presenter>{
-        void showMessage(String msg);
-        void showLoading();
-        void hideLoading();
         void showGanks(List<Gank> ganks);
         void showGankDetails(Gank gank);
         void showPicture(Gank gank);
