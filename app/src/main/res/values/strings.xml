@@ -7,4 +7,14 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="types">
+        <item>Android</item>
+        <item>iOS</item>
+        <item>视频</item>
+        <item>福利</item>
+        <item>扩展资源</item>
+        <item>前端</item>
+        <item>瞎推荐</item>
+        <item>app</item>
+    </string-array>
 </resources>

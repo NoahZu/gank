@@ -14,6 +14,7 @@ public class CommitGankContract {
         String getWho();
         String getDesc();
         String getUrl();
+        void initSpinner();
     }
 
     interface Presenter extends BasePresenter{

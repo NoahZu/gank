@@ -2,11 +2,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="noahzu.github.io.gank.CommitGank.CommitGankFragment">
+    tools:context="noahzu.github.io.gank.CommitGank.CommitGankFragment"
+    android:paddingLeft="7dp"
+    android:paddingRight="7dp">
 
     <noahzu.github.io.gank.widget.TipEditText
+        android:id="@+id/text_desc"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_margin="5dp"/>
-
+        android:layout_height="150dp"
+        android:layout_margin="5dp"
+        android:hint="在这里输入描述"/>
+    <EditText
+        android:id="@+id/text_url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_desc"
+        android:hint="请输入url"
+        android:lines="1"
+        />
+    <Spinner
+        android:id="@+id/spinner_type"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_url"
+        android:layout_marginTop="10dp"/>
+    <EditText
+        android:id="@+id/text_who"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_url"
+        android:layout_toRightOf="@id/spinner_type"
+        android:layout_alignBottom="@id/spinner_type"
+        />
+    <Button
+        android:id="@+id/commit_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="提交"
+        android:layout_below="@id/text_who"
+        android:layout_marginTop="70dp"/>
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
 </RelativeLayout>
