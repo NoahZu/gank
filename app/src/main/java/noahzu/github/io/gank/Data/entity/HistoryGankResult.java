@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 /**
  * Created by Administrator on 2016/8/15.
  */
-public class HistoryGankResult {
+public class HistoryGankResult{
     private boolean error;
     private List<PreviewGank> results;
 

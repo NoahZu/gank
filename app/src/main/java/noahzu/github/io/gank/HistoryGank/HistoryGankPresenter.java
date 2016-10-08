@@ -50,17 +50,19 @@ public class HistoryGankPresenter implements HistoryGankContract.Presenter {
 
                           @Override
                           public void onCompleted() {
-
+                              mView.stopRefresh();
                           }
 
                           @Override
                           public void onError(Throwable e) {
                               mView.showMessage("网络错误");
+                              mView.stopRefresh();
                           }
 
                           @Override
                           public void onNext(HistoryGankResult listBeanWrapper) {
-                                mView.addGanks(listBeanWrapper.getResults());
+                              mView.stopRefresh();
+                              mView.showGanks(listBeanWrapper.getResults());
                           }
                       });
 
@@ -79,23 +81,23 @@ public class HistoryGankPresenter implements HistoryGankContract.Presenter {
                     @Override
                     public void onStart() {
                         super.onStart();
-                        mView.showLoading();
                     }
 
                     @Override
                     public void onCompleted() {
-                        mView.hideLoading();
+                        mView.stopLoadingMore();
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        mView.hideLoading();
                         mView.showMessage("网络错误");
+                        mView.stopLoadingMore();
                     }
 
                     @Override
                     public void onNext(HistoryGankResult listBeanWrapper) {
-                        mView.loadMoreGanks(listBeanWrapper.getResults());
+                        mView.stopLoadingMore();
+                        mView.addGanks(listBeanWrapper.getResults());
                     }
                 });
 

@@ -13,6 +13,7 @@
     android:layout_marginRight="5dp"
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
+    android:paddingBottom="10dp"
     >
 
     <LinearLayout
@@ -33,6 +34,8 @@
             android:textSize="15sp"
             android:gravity="center"
             android:ellipsize="end"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             />
     </LinearLayout>
 

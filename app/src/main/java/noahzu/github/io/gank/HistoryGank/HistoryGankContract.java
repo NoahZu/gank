@@ -17,7 +17,10 @@ public class HistoryGankContract {
         void showGankDetails(HistoryGankResult.PreviewGank gank);
         void showPicture(HistoryGankResult.PreviewGank gank);
         int getCurrentPage();
-        void loadMoreGanks(List<HistoryGankResult.PreviewGank> ganks);
+        void startRefresh();
+        void stopRefresh();
+        void startLoading();
+        void stopLoadingMore();
     }
 
     interface Presenter extends BasePresenter{
