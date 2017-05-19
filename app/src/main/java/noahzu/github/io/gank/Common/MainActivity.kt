@@ -1,24 +1,19 @@
 package noahzu.github.io.gank.Common
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.support.annotation.RequiresApi
 import android.support.design.widget.NavigationView
 import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import android.widget.Toast
-import noahzu.github.io.gank.CommitGank.CommitGankFragment
 import noahzu.github.io.gank.HistoryGank.HistoryGankFragment
 import noahzu.github.io.gank.LatestGank.LatestGankFragment
-
 import noahzu.github.io.gank.R
 import noahzu.github.io.gank.SearchGank.SearchGankActivity
 
-class KotlingMainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     private lateinit var mDrawerLayout:DrawerLayout
 
     private lateinit var latestGankFragment : LatestGankFragment
@@ -45,12 +40,20 @@ class KotlingMainActivity : AppCompatActivity() {
         mDrawerLayout = findViewById(R.id.drawer_layout) as DrawerLayout
         navigationView = findViewById(R.id.nav_view) as NavigationView
         mDrawerLayout.setStatusBarBackground(R.color.colorPrimaryDark)
-        navigationView.setNavigationItemSelectedListener { item: MenuItem -> when(item.itemId){
-            R.id.action_latest -> initLatestGank()
-            R.id.action_history -> initHistoryGank()
-            R.id.action_search -> initSearchGank()
-            else -> showToast("点错了~")
-        } }
+        navigationView.setNavigationItemSelectedListener { item: MenuItem ->
+            when(item.itemId){
+                R.id.action_latest -> initLatestGank()
+                R.id.action_history -> initHistoryGank()
+                R.id.action_search -> initSearchGank()
+                else -> showToast("点错了~")
+            }
+            if (item.itemId != R.id.action_search){
+                preItem.isChecked = false
+                item.isChecked = true
+                preItem = item
+            }
+            true
+        }
     }
 
     private fun initLatestGank(): Boolean {

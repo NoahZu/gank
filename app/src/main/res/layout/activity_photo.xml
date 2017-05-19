@@ -19,22 +19,4 @@
         android:layout_height="match_parent"
         android:layout_below="@id/toolbar"
         android:scaleType="centerCrop"/>
-    <ImageView
-        android:id="@+id/share_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/share_icon"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="20dp"/>
-    <ImageView
-        android:id="@+id/save_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/save_icon"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginRight="20dp"/>
 </RelativeLayout>

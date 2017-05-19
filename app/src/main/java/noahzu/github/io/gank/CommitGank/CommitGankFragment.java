@@ -65,6 +65,8 @@ public class CommitGankFragment extends BaseFragment implements CommitGankContra
         progressBar = (ProgressBar) getContentView().findViewById(R.id.progress_bar);
     }
 
+
+
     @Override
     protected int getLayout() {
         return R.layout.fragment_commit_gank;

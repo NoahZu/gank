@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import noahzu.github.io.gank.Common.CommonViewHolder;
-import noahzu.github.io.gank.Common.PhotoActivity;
 import noahzu.github.io.gank.Data.entity.HistoryGankResult;
 import noahzu.github.io.gank.R;
 
