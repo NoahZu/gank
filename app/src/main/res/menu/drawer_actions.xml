@@ -12,9 +12,5 @@
         android:id="@+id/action_search"
         android:icon="@mipmap/search"
         android:title="@string/search_gank" />
-    <item
-        android:id="@+id/action_commit"
-        android:icon="@mipmap/commit"
-        android:title="@string/commit_gank" />
 
 </menu>

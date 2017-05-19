@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
     private LatestGankFragment latestGankFragment;
     private HistoryGankFragment historyGankFragment;
-    private LatestGankFragment f3;
     private CommitGankFragment f4;
     private NavigationView navigationView;
     private MenuItem preItem;
@@ -63,9 +62,6 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.action_search:
                         initSearchGank();
-                        break;
-                    case R.id.action_commit:
-                        initCommitGank();
                         break;
                 }
                 if (item.getItemId() != R.id.action_search){
