@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gank.iml" filepath="$PROJECT_DIR$/gank.iml" />
       <module fileurl="file://$PROJECT_DIR$/gankyixia.iml" filepath="$PROJECT_DIR$/gankyixia.iml" />
       <module fileurl="file://$PROJECT_DIR$/irecyclerview-refresh/irecyclerview-refresh.iml" filepath="$PROJECT_DIR$/irecyclerview-refresh/irecyclerview-refresh.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
