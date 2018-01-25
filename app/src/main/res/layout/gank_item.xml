@@ -21,8 +21,6 @@
             android:layout_below="@id/gank_desc_text"
             android:layout_marginRight="5dp"
             android:layout_alignLeft="@id/gank_desc_text"
-            android:textColor="@android:color/white"
-            android:background="@drawable/label_back"
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
             android:paddingTop="2dp"

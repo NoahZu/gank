@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -33,7 +34,7 @@ import noahzu.github.io.gank.widget.RecycleViewDivider;
  */
 public class SearchGankFragment extends BaseFragment implements SearchGankContract.View{
     private ProgressBar progressBar;
-    private ImageView backImageView;
+    private ImageButton backImageView;
     private EditText searchEdit;
     private RecyclerView recyclerView;
     private SearchGankContract.Presenter presenter;
@@ -81,7 +82,7 @@ public class SearchGankFragment extends BaseFragment implements SearchGankContra
     @Override
     protected void initView() {
         progressBar = (ProgressBar) getContentView().findViewById(R.id.progress_bar);
-        backImageView = (ImageView) getContentView().findViewById(R.id.back_img);
+        backImageView = (ImageButton) getContentView().findViewById(R.id.back_img);
         searchEdit = (EditText) getContentView().findViewById(R.id.search_edit);
         recyclerView = (RecyclerView) getContentView().findViewById(R.id.search_result);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

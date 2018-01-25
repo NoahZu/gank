@@ -78,7 +78,7 @@ public class HistoryGankFragment extends BaseFragment implements HistoryGankCont
         new HistoryGankPresenter(this);
         gankListRecylerView = (IRecyclerView) getContentView().findViewById(R.id.history_gank_list);
         mLoadMoreFooterView = (LoadMoreFooterView) gankListRecylerView.getLoadMoreFooterView();
-        gankListRecylerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        gankListRecylerView.setLayoutManager(new GridLayoutManager(getContext(),2));
 
     }
 

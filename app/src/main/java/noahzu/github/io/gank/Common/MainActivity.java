@@ -64,9 +64,6 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.action_search:
                         initSearchGank();
                         break;
-                    case R.id.action_commit:
-                        initCommitGank();
-                        break;
                 }
                 if (item.getItemId() != R.id.action_search){
                     preItem.setChecked(false);
@@ -88,18 +85,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-    private void initCommitGank() {
-        getSupportActionBar().setTitle("提交Gank");
-        mDrawerLayout.closeDrawers();
-        if(f4 == null ){
-            f4 = CommitGankFragment.newInstance();
-        }
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.contentFrame,f4)
-                .commit();
-    }
 
     private void initSearchGank() {
         startActivity(new Intent(MainActivity.this, SearchGankActivity.class));
